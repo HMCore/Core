@@ -9,6 +9,7 @@ import org.hmcore.registration.ObjectInfo;
  * @param <I> Object that contains information about the object. Like the texture.
  */
 public abstract class Module<T, I extends ObjectInfo> {
+
     //
     // For registering Objects to Module and getting them
     // Made for mods to call them
