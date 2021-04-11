@@ -5,7 +5,7 @@ import org.hmcore.registration.ObjectInfo;
 /**
  * Represents a module that manages the objects that should get registered to Hytale.
  * @param <T> The object that should get registered
- * @param <I> Object that contains informations about the object. Like the texture.
+ * @param <I> Object that contains information about the object. Like the texture.
  */
 public abstract class Module<T, I extends ObjectInfo> {
 
@@ -29,7 +29,7 @@ public abstract class Module<T, I extends ObjectInfo> {
     public abstract T get(String name);
 
     /**
-     * Registeres the object to the module.
+     * Registers the object to the module.
      * @param name The name or key for the object to get registered under.
      * @param object The object that should get registered.
      */
@@ -50,11 +50,11 @@ public abstract class Module<T, I extends ObjectInfo> {
 
     /**
      * Simple utility function that automatically checks if the object already exists.
-     * If not, the object is registered. An easy boilerplate code pevention.
+     * If not, the object is registered. An easy boilerplate code prevention.
      * @param name
      * @param object
      */
-    public void registerIfNonExistant(String name, T object) {
+    public void registerIfNonExistent(String name, T object) {
         if(!contains(name)) register(name, object);
     }
 
@@ -64,7 +64,7 @@ public abstract class Module<T, I extends ObjectInfo> {
     //
 
     /**
-     * Gets called when the phase of object registration to hytale has come.
+     * Gets called when the phase of object registration to Hytale has come.
      * @return true when every object has been registered successfully.
      */
     public abstract boolean registerObjects();
