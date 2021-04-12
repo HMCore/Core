@@ -20,7 +20,7 @@ public class ObjectInfoConfigHandler {
 
         ObjectInfoConfig objectInfoConfig = new ObjectInfoConfig(moduleInfos);
 
-        GsonBuilder builder = new GsonBuilder();
+        GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
         Gson gson = builder.create();
 
         return gson.toJson(objectInfoConfig);
