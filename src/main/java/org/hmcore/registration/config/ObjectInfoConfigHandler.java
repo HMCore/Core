@@ -6,23 +6,21 @@ import org.hmcore.modules.Module;
 
 public class ObjectInfoConfigHandler {
 
+    private void writeNewConfig() {
+
+    }
+
     public static String generateFreshJSON(Module<?,?>[] modules) {
 
         ModuleInfo[] moduleInfos = new ModuleInfo[modules.length];
-
         for (int i = 0; i < modules.length; i++) {
-
             Module<?,?> module = modules[i];
             moduleInfos[i] = new ModuleInfo(module.getName(),
                     module.getObjectInfoArray());
-
         }
 
         ObjectInfoConfig objectInfoConfig = new ObjectInfoConfig(moduleInfos);
-
-        GsonBuilder builder = new GsonBuilder().setPrettyPrinting();
-        Gson gson = builder.create();
-
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         return gson.toJson(objectInfoConfig);
 
     }
