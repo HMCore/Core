@@ -8,5 +8,5 @@ import extensions.map
 
 private val GSON = GsonBuilder().setPrettyPrinting().create()
 
-fun Array<Module<*, *>>.generateFreshJSON(): String =
+internal fun Array<Module<*, *>>.generateFreshJSON(): String =
     GSON.toJson(ObjectInfoConfig(map { ModuleInfo(it.name, it.objectInfoArray) }))
