@@ -5,12 +5,12 @@ import org.jetbrains.annotations.Nullable;
 public class ObjectInfoData {
 
     public final String objectName;
-    public final String objectInfoChoosen;
+    public final String objectInfoChosen;
     public final String _availableOptions;
 
-    public ObjectInfoData(String objectName, @Nullable String objectInfoChoosen, String availableOptions) {
+    public ObjectInfoData(String objectName, @Nullable String objectInfoChosen, String availableOptions) {
         this.objectName = objectName;
-        this.objectInfoChoosen = objectInfoChoosen == null ? "default" : objectInfoChoosen;
+        this.objectInfoChosen = objectInfoChosen == null ? "default" : objectInfoChosen;
         _availableOptions = availableOptions;
     }
 }
