@@ -1,10 +1,12 @@
 package org.hmcore.tests.modules.impl;
 
 import org.hmcore.modules.Module;
+import org.hmcore.registration.config.ObjectInfoData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
 
@@ -37,6 +39,16 @@ public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
     }
 
     @Override
+    public String getName() {
+        return "java_test";
+    }
+
+    @Override
+    public Integer[] getObjects() {
+        return objectMap.values().toArray(new Integer[0]);
+    }
+
+    @Override
     public boolean registerObjects() {
 
         objectMap.forEach((string, integer) -> {
@@ -54,5 +66,37 @@ public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
         });
 
         return true;
+    }
+
+    @Override
+    public ObjectInfoData[] getObjectInfoArray() {
+
+        ObjectInfoData[] objectInfoData = new ObjectInfoData[objectMap.values().size()];
+
+        int i = 0;
+        
+        for(Map.Entry<String, Integer> entry: objectMap.entrySet()) {
+            
+            String options = "";
+            boolean first = true;
+
+            for(Map.Entry<String, JavaCustomObjectInfo> entry2: infoMap.get(entry.getKey()).entrySet()) {
+                
+                if(first) {
+                    options = entry2.getKey();
+                    first = false;
+                } else {
+                    options += ", " + entry2.getKey();
+                }
+                
+            }
+
+            objectInfoData[i] = new ObjectInfoData(entry.getKey(), null, options);
+            
+            i++;
+
+        }
+
+        return objectInfoData;
     }
 }

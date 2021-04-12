@@ -1,6 +1,9 @@
 package org.hmcore.tests;
 
 import org.hmcore.HMCore;
+import org.hmcore.modules.Module;
+import org.hmcore.registration.config.ObjectInfoConfigHandler;
+import org.hmcore.tests.modules.impl.JavaCustomObjectInfo;
 import org.hmcore.tests.modules.impl.JavaTestModule;
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +42,17 @@ public class JavaTests {
         assertEquals(74232, testModule.get("test3"), "Object has changed properties for some reason!");
 
         assertTrue(testModule.registerObjects(), "Some weird behavior happened..");
+
+        testModule.addInfoToObject("test1", "opt1", new JavaCustomObjectInfo("aa", 18));
+
+        testModule.addInfoToObject("test2", "opt2", new JavaCustomObjectInfo("AI", 69));
+        testModule.addInfoToObject("test2", "opt3", new JavaCustomObjectInfo("drei", 420));
+
+        testModule.addInfoToObject("test3", "opt4", new JavaCustomObjectInfo("addadaaa", 181));
+        testModule.addInfoToObject("test3", "opt5", new JavaCustomObjectInfo("dada", 32833));
+        testModule.addInfoToObject("test3", "opt6", new JavaCustomObjectInfo("e3312", 2130440));
+
+        System.out.println(ObjectInfoConfigHandler.generateFreshJSON(HMCore.modules.values().toArray(new Module[0])));
 
     }
 

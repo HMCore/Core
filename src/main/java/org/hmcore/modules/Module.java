@@ -1,6 +1,7 @@
 package org.hmcore.modules;
 
 import org.hmcore.registration.ObjectInfo;
+import org.hmcore.registration.config.ObjectInfoData;
 
 /**
  * Represents a module that manages the objects that should get registered to Hytale.
@@ -64,6 +65,17 @@ public abstract class Module<T, I extends ObjectInfo> {
         if (!contains(name)) register(name, object);
     }
 
+    /**
+     * Used to be able to request the name the module is registered as.
+     * @return The String the module is registered as. So that HMCore.modules.get(name).getName() == name
+     */
+    public abstract String getName();
+
+    /**
+     * @return An Array of all objects currently registered to the module.
+     */
+    public abstract T[] getObjects();
+
     //
     // For registering the Objects to Hytale
     // Made for internal use ONLY
@@ -75,4 +87,7 @@ public abstract class Module<T, I extends ObjectInfo> {
      * @return true when every object has been registered successfully.
      */
     public abstract boolean registerObjects();
+
+
+    public abstract ObjectInfoData[] getObjectInfoArray();
 }
