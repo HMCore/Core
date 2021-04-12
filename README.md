@@ -15,7 +15,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/wulkanat"><img src="https://avatars.githubusercontent.com/u/19289296?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wieland Schöbl</b></sub></a><br /><a href="https://github.com/HMCore/Core/commits?author=wulkanat" title="Tests">⚠️</a> <a href="https://github.com/HMCore/Core/commits?author=wulkanat" title="Code">💻</a> <a href="https://github.com/HMCore/Core/commits?author=wulkanat" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/wulkanat"><img src="https://avatars.githubusercontent.com/u/19289296?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wieland Schöbl</b></sub></a><br /><a href="https://github.com/HMCore/Core/commits?author=wulkanat" title="Tests">⚠️</a> <a href="https://github.com/HMCore/Core/commits?author=wulkanat" title="Code">💻</a> <a href="https://github.com/HMCore/Core/commits?author=wulkanat" title="Documentation">📖</a> <a href="#ideas-wulkanat" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
