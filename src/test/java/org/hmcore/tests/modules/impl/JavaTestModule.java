@@ -1,13 +1,13 @@
 package org.hmcore.tests.modules.impl;
 
 import org.hmcore.modules.Module;
-import org.hmcore.registration.config.ObjectInfoData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("KotlinInternalInJava")
 public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
 
     public HashMap<String, Integer> objectMap = new HashMap<>();
@@ -69,9 +69,10 @@ public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
     }
 
     @Override
-    public ObjectInfoData[] getObjectInfoArray() {
+    public org.hmcore.registration.config.ObjectInfoData[] getObjectInfoArray() {
 
-        ObjectInfoData[] objectInfoData = new ObjectInfoData[objectMap.values().size()];
+        org.hmcore.registration.config.ObjectInfoData[] objectInfoData =
+                new org.hmcore.registration.config.ObjectInfoData[objectMap.values().size()];
 
         int i = 0;
         
@@ -91,7 +92,7 @@ public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
                 
             }
 
-            objectInfoData[i] = new ObjectInfoData(entry.getKey(), null, options);
+            objectInfoData[i] = new org.hmcore.registration.config.ObjectInfoData(entry.getKey(), options);
             
             i++;
 
