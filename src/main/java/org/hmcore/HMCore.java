@@ -1,6 +1,7 @@
 package org.hmcore;
 
 import org.hmcore.modules.Module;
+import org.hmcore.modules.ModuleLoader;
 import org.hmcore.modules.ModuleManager;
 import org.hmcore.modules.RegistryModule;
 

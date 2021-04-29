@@ -4,6 +4,9 @@ import org.hmcore.HMCore;
 import org.hmcore.api.ModuleState;
 import org.hmcore.api.exceptions.ModuleErroredException;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
 public class ModuleManager {
 
     static ModuleState overallState = ModuleState.QUEUED;
@@ -11,7 +14,11 @@ public class ModuleManager {
     public static void loadModules() {
         if(overallState != ModuleState.QUEUED) return;
 
-        //TODO: LOAD MODULES HERE LATER
+        try {
+            new ModuleLoader().loadModules();
+        } catch (IOException | ClassNotFoundException | InvocationTargetException | NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         overallState = ModuleState.LOADED;
 
