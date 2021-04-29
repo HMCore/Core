@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SuppressWarnings("KotlinInternalInJava")
 public class JavaTests {
 
     @Test

@@ -43,10 +43,10 @@ public class ObjectInfoConfigHandler {
                         RegistryModule<?, ?> registryModule = (RegistryModule<?, ?>) module;
                         for (ObjectInfoData data:
                              moduleInfo.objects) {
-                            if(registryModule.objectAndInfoExist(data.objectName, data.objectInfoChoosen)) {
-                                registryModule.forceObjectInfoForObject(data.objectName, data.objectInfoChoosen);
+                            if(registryModule.objectAndInfoExist(data.objectInfoName, data.objectInfoChosen)) {
+                                registryModule.forceObjectInfoForObject(data.objectInfoName, data.objectInfoChosen);
                             } else {
-                                System.out.println("[!] Either Object Info " + data.objectInfoChoosen + " doesn't exist for " + data.objectName + " or " + data.objectName + " doesn't exist!\n" +
+                                System.out.println("[!] Either Object Info " + data.objectInfoChosen + " doesn't exist for " + data.objectInfoName + " or " + data.objectInfoName + " doesn't exist!\n" +
                                         "Please stop the Server, delete objetc-infos.json and let the server regenertate a new config [!]");
                             }
                         }

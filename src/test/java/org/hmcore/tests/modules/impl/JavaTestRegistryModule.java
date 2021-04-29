@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("KotlinInternalInJava")
 public class JavaTestRegistryModule extends RegistryModule<Integer, JavaCustomObjectInfo> {
 
     public HashMap<String, Integer> objectMap = new HashMap<>();
