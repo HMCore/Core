@@ -1,6 +1,6 @@
 package org.hmcore.tests.modules.impl;
 
-import org.hmcore.modules.Module;
+import org.hmcore.modules.RegistryModule;
 import org.hmcore.registration.config.ObjectInfoData;
 
 import java.util.ArrayList;
@@ -8,10 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
+public class JavaTestRegistryModule extends RegistryModule<Integer, JavaCustomObjectInfo> {
 
     public HashMap<String, Integer> objectMap = new HashMap<>();
     public HashMap<String, HashMap<String, JavaCustomObjectInfo>> infoMap = new HashMap<>();
+    public HashMap<Integer, JavaCustomObjectInfo> forceMap = new HashMap<>();
 
     public List<Object> endList = new ArrayList<>();
 
@@ -41,6 +42,21 @@ public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
     @Override
     public String getName() {
         return "java_test";
+    }
+
+    @Override
+    protected boolean initialize() {
+        return true;
+    }
+
+    @Override
+    protected boolean disable() {
+        return true;
+    }
+
+    @Override
+    protected boolean unload() {
+        return true;
     }
 
     @Override
@@ -98,5 +114,15 @@ public class JavaTestModule extends Module<Integer, JavaCustomObjectInfo> {
         }
 
         return objectInfoData;
+    }
+
+    @Override
+    public void forceObjectInfoForObject(String object, String objectInfo) {
+        forceMap.put(objectMap.get(object), infoMap.get(object).get(objectInfo));
+    }
+
+    @Override
+    public boolean objectAndInfoExist(String object, String objectInfo) {
+        return infoMap.containsKey(object) && infoMap.get(object).containsKey(objectInfo);
     }
 }

@@ -1,93 +1,57 @@
 package org.hmcore.modules;
 
-import org.hmcore.registration.ObjectInfo;
-import org.hmcore.registration.config.ObjectInfoData;
+import org.hmcore.api.ModuleState;
 
 /**
- * Represents a module that manages the objects that should get registered to Hytale.
- *
- * @param <T> The object that should get registered
- * @param <I> Object that contains information about the object. Like the texture.
+ * Represents a module with custom features
  */
-public abstract class Module<T, I extends ObjectInfo> {
-
-    //
-    // For registering Objects to Module and getting them
-    // Made for mods to call them
-    //
-
-    /**
-     * For checking if the Module has the module already in its list.
-     *
-     * @param name The name or registration key of the object to be checked
-     * @return true when the object is already registered.
-     */
-    public abstract boolean contains(String name);
-
-    /**
-     * Gets the object for the registered name.
-     *
-     * @param name The name or key for the object that should be returned.
-     * @return The object under the registered name or null if it doesn't exists.
-     */
-    public abstract T get(String name);
-
-    /**
-     * Registers the object to the module.
-     *
-     * @param name   The name or key for the object to get registered under.
-     * @param object The object that should get registered.
-     */
-    public abstract void register(String name, T object);
-
-    // TODO: If one option added stuff the other option doesn't had, (as example ore generation info for a block) it should be automatically added.
-    // TODO: The admins should be able to choose a option for each feature individually. (Block behavior, ore generation, maybe force a specific texture for users, etc.)
-
-    /**
-     * Adds an option for information to the object.
-     * There can be multiple options for information and the server administrators can choose which to use.
-     * Per default the first registered option is used.
-     *
-     * @param name       The name or key for the object the information should be added to.
-     * @param infoName   The name of the option. The name of the mod as example.
-     * @param objectInfo The info object that supplies the module with the required information.
-     */
-    public abstract void addInfoToObject(String name, String infoName, I objectInfo);
-
-    /**
-     * Simple utility function that automatically checks if the object already exists.
-     * If not, the object is registered. An easy boilerplate code prevention.
-     *
-     * @param name
-     * @param object
-     */
-    public void registerIfNonExistent(String name, T object) {
-        if (!contains(name)) register(name, object);
-    }
+public abstract class Module {
 
     /**
      * Used to be able to request the name the module is registered as.
-     * @return The String the module is registered as. So that HMCore.modules.get(name).getName() == name
+     * @return The String the module is registered as. So that HMCore.modules.get(name).getName() equals name
      */
     public abstract String getName();
 
+    ModuleState moduleState = ModuleState.QUEUED;
+
+    public ModuleState getModuleState() {
+        return moduleState;
+    }
+
+    protected void setModuleState(ModuleState moduleState) {
+        this.moduleState = moduleState;
+    }
+
     /**
-     * @return An Array of all objects currently registered to the module.
+     * Runs some preparation optionally supplied by the module before it can fully work.
+     * This should only include stuff that isn't needed for calling functions like register(name, object); to a RegistryModule. This should be in the constructor.
+     * It can be used as example for creating a namespace or hooking into some Hytale functionalities.
+     * If you want to run stuff when the Module is loaded, use the constructor of your main class.
+     * @return true when initialisation finished without a problem. false when there is a critical problem which won't allow the module to function properly.
+     * When false is returned the server is safely shut down.
      */
-    public abstract T[] getObjects();
-
-    //
-    // For registering the Objects to Hytale
-    // Made for internal use ONLY
-    //
+    protected abstract boolean initialize();
 
     /**
-     * Gets called when the phase of object registration to Hytale has come.
-     *
-     * @return true when every object has been registered successfully.
+     * Gets called when it is time for the module to hook into Hytale and register their stuff in the hytale apis.
+     * @return true when hooking finished without a problem. false when there is a critical problem which won't allow the module to function properly.
+     * When false is returned the server is safely shut down.
      */
-    public abstract boolean registerObjects();
+    protected abstract boolean hook();
 
+    /**
+     * Gets called when the module should shut down. Can be used to save data a last time.
+     * @return true when disabling finished without a problem. false when there is a critical problem which won't allow the module to disable properly.
+     * When false is returned the server is safely shut down with a warning.
+     */
+    protected abstract boolean disable();
 
-    public abstract ObjectInfoData[] getObjectInfoArray();
+    /**
+     * Gets called right before the module is unloaded. This will be the last call to the module before it is unloaded.
+     * @return true when disabling finished without a problem. false when there is a critical problem which won't allow the module to disable properly.
+     * When false is returned the server is safely shut down with a warning.
+     */
+    protected abstract boolean unload();
+
 }

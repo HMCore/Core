@@ -94,15 +94,15 @@ local.properties
 .idea/**/libraries
 
 # Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
+# When using Gradle or Maven with auto-import, you should exclude registryModule files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 .idea/artifacts
 .idea/compiler.xml
 .idea/jarRepositories.xml
-.idea/modules.xml
+.idea/registryModules.xml
 .idea/*.iml
-.idea/modules
+.idea/registryModules
 *.iml
 *.ipr
 
@@ -140,7 +140,7 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 ### Intellij Patch ###
-modules.xml
+registryModules.xml
 .idea/misc.xml
 
 # Sonarlint plugin
@@ -209,3 +209,4 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,intellij,gradle
 
 run/
+test-run/
