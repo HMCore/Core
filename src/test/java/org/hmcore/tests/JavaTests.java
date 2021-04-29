@@ -1,8 +1,11 @@
 package org.hmcore.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.hmcore.HMCore;
 import org.hmcore.modules.Module;
 import org.hmcore.modules.RegistryModule;
+import org.hmcore.registration.config.ModuleReadable;
 import org.hmcore.registration.config.ObjectInfoConfigHandler;
 import org.hmcore.tests.modules.impl.JavaCustomObjectInfo;
 import org.hmcore.tests.modules.impl.JavaTestRegistryModule;

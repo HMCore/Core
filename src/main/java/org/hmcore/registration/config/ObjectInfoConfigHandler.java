@@ -43,6 +43,7 @@ public class ObjectInfoConfigHandler {
                         RegistryModule<?, ?> registryModule = (RegistryModule<?, ?>) module;
                         for (ObjectInfoData data:
                              moduleInfo.objects) {
+                            if(data.objectInfoChosen.equalsIgnoreCase("default")) break;
                             if(registryModule.objectAndInfoExist(data.objectInfoName, data.objectInfoChosen)) {
                                 registryModule.forceObjectInfoForObject(data.objectInfoName, data.objectInfoChosen);
                             } else {
