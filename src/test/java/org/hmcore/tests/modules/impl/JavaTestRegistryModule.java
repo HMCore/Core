@@ -108,7 +108,7 @@ public class JavaTestRegistryModule extends RegistryModule<Integer, JavaCustomOb
                 
             }
 
-            objectInfoData[i] = new ObjectInfoData(entry.getKey(), null, options);
+            objectInfoData[i] = new ObjectInfoData(entry.getKey(), options);
             
             i++;
 

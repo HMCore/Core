@@ -48,6 +48,7 @@ public class ObjectInfoConfigHandler {
                             } else {
                                 System.out.println("[!] Either Object Info " + data.objectInfoChosen + " doesn't exist for " + data.objectInfoName + " or " + data.objectInfoName + " doesn't exist!\n" +
                                         "Please stop the Server, delete objetc-infos.json and let the server regenertate a new config [!]");
+                                return false;
                             }
                         }
                     }

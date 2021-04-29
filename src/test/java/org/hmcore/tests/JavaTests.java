@@ -1,6 +1,7 @@
 package org.hmcore.tests;
 
 import org.hmcore.HMCore;
+import org.hmcore.modules.Module;
 import org.hmcore.modules.RegistryModule;
 import org.hmcore.registration.config.ObjectInfoConfigHandler;
 import org.hmcore.tests.modules.impl.JavaCustomObjectInfo;
@@ -8,6 +9,8 @@ import org.hmcore.tests.modules.impl.JavaTestRegistryModule;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -55,30 +58,37 @@ public class JavaTests {
         testModule.addInfoToObject("test3", "opt5", new JavaCustomObjectInfo("dada", 32833));
         testModule.addInfoToObject("test3", "opt6", new JavaCustomObjectInfo("e3312", 2130440));
 
+        List<RegistryModule<?, ?>> registryModules = new ArrayList<>();
+        Module[] modules = HMCore.modules.values().toArray(new Module[0]);
+        for (Module module:
+                modules) {
+            if(module instanceof RegistryModule) registryModules.add((RegistryModule<?, ?>) module);
+        }
+
         assertEquals("{\n" +
                 "  \"modules\": [\n" +
                 "    {\n" +
                 "      \"moduleName\": \"java_test\",\n" +
                 "      \"objects\": [\n" +
                 "        {\n" +
-                "          \"objectName\": \"test2\",\n" +
-                "          \"objectInfoChoosen\": \"default\",\n" +
-                "          \"_availableOptions\": \"opt3, opt2\"\n" +
+                "          \"objectInfoName\": \"test2\",\n" +
+                "          \"_availableOptions\": \"opt3, opt2\",\n" +
+                "          \"objectInfoChosen\": \"default\"\n" +
                 "        },\n" +
                 "        {\n" +
-                "          \"objectName\": \"test3\",\n" +
-                "          \"objectInfoChoosen\": \"default\",\n" +
-                "          \"_availableOptions\": \"opt4, opt5, opt6\"\n" +
+                "          \"objectInfoName\": \"test3\",\n" +
+                "          \"_availableOptions\": \"opt4, opt5, opt6\",\n" +
+                "          \"objectInfoChosen\": \"default\"\n" +
                 "        },\n" +
                 "        {\n" +
-                "          \"objectName\": \"test1\",\n" +
-                "          \"objectInfoChoosen\": \"default\",\n" +
-                "          \"_availableOptions\": \"opt1\"\n" +
+                "          \"objectInfoName\": \"test1\",\n" +
+                "          \"_availableOptions\": \"opt1\",\n" +
+                "          \"objectInfoChosen\": \"default\"\n" +
                 "        }\n" +
                 "      ]\n" +
                 "    }\n" +
                 "  ]\n" +
-                "}", ObjectInfoConfigHandler.generateFreshJSON(HMCore.modules.values().toArray(new RegistryModule[0])), "JSON String generation working");
+                "}", ObjectInfoConfigHandler.generateFreshJSON(registryModules.toArray(new RegistryModule[0])), "JSON String generation working");
 
     }
 
