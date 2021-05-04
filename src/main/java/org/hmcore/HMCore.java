@@ -15,6 +15,9 @@ public class HMCore {
         ModuleManager.loadModules();
         ModuleManager.initModules();
         ModuleManager.hookModules();
+
+        ModuleManager.disableModules();
+        ModuleManager.unloadModules();
     }
 
 }

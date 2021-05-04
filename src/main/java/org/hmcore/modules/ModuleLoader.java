@@ -22,7 +22,7 @@ public class ModuleLoader {
         if(!moduleDir.exists()) moduleDir.mkdirs();
         for (String path:
                 Objects.requireNonNull(moduleDir.list())) {
-            loadModule(path);
+            loadModule("hm/modules/" + path);
         }
     }
 
