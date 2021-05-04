@@ -210,3 +210,5 @@ gradle-app.setting
 
 run/
 test-run/
+.classpath
+.project
