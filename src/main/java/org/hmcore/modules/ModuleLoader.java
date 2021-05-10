@@ -27,7 +27,7 @@ public class ModuleLoader {
     }
 
     private void loadModule(String path) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        System.out.println("Loading module at: " + path);
+        HMCore.logger.debug("Loading module at: " + path);
         JarFile jarFile = new JarFile(path);
         JarEntry jarEntry = jarFile.getJarEntry("module.json");
         String content = getClassPath(jarFile.getInputStream(jarEntry));
@@ -40,7 +40,7 @@ public class ModuleLoader {
         Class<?> classToLoad = Class.forName(readable.getClassPath(), true, child);
         Module instance = (Module) classToLoad.getDeclaredConstructor().newInstance();
         HMCore.modules.put(instance.getName(), instance);
-        System.out.println("Loaded " + instance.getName() + " v" + readable.getVersion() + " by " + readable.getCreator());
+        HMCore.logger.info("Loaded " + instance.getName() + " v" + readable.getVersion() + " by " + readable.getCreator());
     }
 
     private String getClassPath(InputStream jarEntry) {

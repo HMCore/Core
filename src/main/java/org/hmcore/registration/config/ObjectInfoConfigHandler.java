@@ -47,8 +47,8 @@ public class ObjectInfoConfigHandler {
                             if(registryModule.objectAndInfoExist(data.objectInfoName, data.objectInfoChosen)) {
                                 registryModule.forceObjectInfoForObject(data.objectInfoName, data.objectInfoChosen);
                             } else {
-                                System.out.println("[!] Either Object Info " + data.objectInfoChosen + " doesn't exist for " + data.objectInfoName + " or " + data.objectInfoName + " doesn't exist!\n" +
-                                        "Please stop the Server, delete objetc-infos.json and let the server regenertate a new config [!]");
+                                HMCore.logger.fatal("[!] Either Object Info " + data.objectInfoChosen + " doesn't exist for " + data.objectInfoName + " or " + data.objectInfoName + " doesn't exist!\n" +
+                                        "Please stop the Server, delete objetc-infos.json and let the server regenerate a new config [!]");
                                 return false;
                             }
                         }
@@ -89,7 +89,7 @@ public class ObjectInfoConfigHandler {
         try {
             object = new GsonBuilder().create().fromJson(content, ObjectInfoConfig.class);
         } catch (Exception e) {
-            System.out.println("[!] Object Info Config not valid!");
+            HMCore.logger.fatal("[!] Object Info Config not valid!");
             return null;
         }
 
