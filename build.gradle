@@ -6,11 +6,25 @@ plugins {
 }
 
 group 'com.github.HMCore'
-version '1.0-SNAPSHOT'
+version '1.1-SNAPSHOT'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.HMCore'
+            artifactId = 'Core'
+            version = '1.1'
+
+            from components.java
+        }
+    }
 }
 
 repositories {
@@ -29,4 +43,10 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
 }
