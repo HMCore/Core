@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.hmcore"},{"l":"org.hmcore.api"},{"l":"org.hmcore.api.exceptions"},{"l":"org.hmcore.modules"},{"l":"org.hmcore.registration.config"}]

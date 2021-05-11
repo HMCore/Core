@@ -1,0 +1,5 @@
+org.hmcore
+org.hmcore.api
+org.hmcore.api.exceptions
+org.hmcore.modules
+org.hmcore.registration.config
