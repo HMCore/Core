@@ -50,3 +50,11 @@ javadoc {
         options.addBooleanOption('html5', true)
     }
 }
+
+task unzip(type: Copy) {
+    def zipFile = file('build/libs/HMCore-1.1-SNAPSHOT-javadoc.jar')
+    def outputDir = file("${buildDir}/unpacked/javadoc")
+
+    from zipTree(zipFile)
+    into outputDir
+}
