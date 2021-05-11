@@ -7,6 +7,45 @@
 
 ### TODO
 
+## Use HMCore
+
+### Gradle
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'org.hmcore:Core:{version}'
+}
+```
+### Gradle Kotlin DSL
+*Note: If you use Kotlin, you should probably use [core-ktx](https://github.com/HMCore/Core-ktx) instead*
+```kotlin
+repositories {
+    maven("https://jitpack.io")
+}
+
+dependencies {
+    implementation("org.hmcore:Core:{version}")
+}
+```
+### Maven
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+
+<dependency>
+    <groupId>org.hmcore</groupId>
+    <artifactId>Core</artifactId>
+    <version>{version}</version>
+</dependency>
+```
+
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
