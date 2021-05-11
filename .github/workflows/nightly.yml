@@ -20,14 +20,21 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Deploy release
+    - name: Unzip Javadoc
+      run: ./gradlew unzip
+    - name: Deploy Javadoc🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.2
+      with:
+        branch: gh-pages # The branch the action should deploy to.
+        folder: ./build/unpacked/javadoc # The folder the action should deploy.
+    - name: Deploy release🚀
       uses: WebFreak001/deploy-nightly@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # automatically provided by github actions
       with:
         upload_url: https://uploads.github.com/repos/HMCore/Core/releases/42400467/assets{?name,label} # find out this value by opening https://api.github.com/repos/<owner>/<repo>/releases in your browser and copy the full "upload_url" value including the {?name,label} part
         release_id: 42400467 # same as above (id can just be taken out the upload_url, it's used to find old releases)
-        asset_path: ./build/libs/HMCore-1.0-SNAPSHOT.jar # path to archive to upload
+        asset_path: ./build/libs/HMCore-1.1-SNAPSHOT.jar # path to archive to upload
         asset_name: HMCore_SNAPSHOT-nightly-$$.jar # name to upload the release as, use $$ to insert date (YYYYMMDD) and 6 letter commit hash
         asset_content_type: application/java-archive # required by GitHub API
         max_releases: 3 # optional, if there are more releases than this matching the asset_name, the oldest ones are going to be deleted
