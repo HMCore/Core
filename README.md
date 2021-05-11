@@ -2,8 +2,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Release](https://jitpack.io/v/org.hmcore/Core.svg)]
-(https://jitpack.io/#org.hmcore/Core)
+[![Release](https://jitpack.io/v/org.hmcore/Core.svg)](https://jitpack.io/#org.hmcore/Core)
 ## The Core Mod of HMCore which powers the whole system.
 
 ### TODO
